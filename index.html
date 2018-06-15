@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS colour game</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,900" rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.css"/>
+</head>
+<body>
+
+  <main>
+    <h1>What's that<span>css colour?</span></h1>
+    <div class="buttonWrapper">
+      <button id ="howToPlay">How to play</button>
+      <button id ="start">Start!</button>
+    </div>
+  </main>
+
+  <section id="instructions" class="modal hidden howToPlay">
+    <div class="instructionsWrapper">
+      <h2>How to <span>play</span></h2>
+      <!-- <p>This game challenges your knowledge of colours that are just a <em>little</em> more specific than the run of the mill "green" or "red". Is chartreuse a <em>yellow-y green</em>, or is it more of a <em>purple-y yellow</em>? What about "vermillion", is that a <em>vibrant red-orange</em>, or a <em>deep orange-y brown</em>?</p> -->
+      <p>How well do you know CSS colours and their names? This game will put your knowledge to the test. You'll have 20 seconds to get as many as you can correct.</p>
+      <p>Have fun!</p>
+      <button id="back">Got it!</button>
+    </div>
+  </section>
+
+  <!-- <main id="gameBoard" class="modal hidden">
+    <div id="gameBoardWrapper">
+      </div>
+    </div>
+  </main> -->
+
+
+  <script src="scripts/app.js" charset="utf-8"></script>
+</body>
+</html>

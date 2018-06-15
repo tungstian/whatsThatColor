@@ -1,0 +1,15 @@
+main {
+  width: 80vw;
+  // border: 1px solid red;
+  margin: 0px auto;
+  margin-top: 30vh;
+  .buttonWrapper {
+    width: 35vw;
+    margin: 0px auto;
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    // border: 1px solid red;
+  }
+}

@@ -1,0 +1,45 @@
+@import "setup";
+@import "typography";
+@import "main";
+@import "howToPlay";
+@import "game";
+
+$black: #151515;
+
+.modal {
+  position: absolute;
+	width: 100vw;
+  height: 100vh;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	margin: 0 auto;
+  background: rgba(255,255,255,1);
+  z-index: 10;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  height: 50px;
+  border: 1px solid black;
+  width: 200px;
+  background-color: rgba(255,255,255,0);
+  &:active {
+    border: 2px solid black;
+    background: red;
+    color: white;
+    transition: all .5s;
+  }
+  &:focus, &:hover {
+    outline: none;
+    border: 2px solid black;
+  }
+}
+// body {
+//   background-color: $black;
+// }

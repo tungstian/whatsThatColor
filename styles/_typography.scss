@@ -1,0 +1,52 @@
+
+
+body {
+  font-size: 62.5%;
+}
+
+h1, h2, h3 {
+  text-transform: uppercase;
+}
+
+h1, h2, h3, p, button {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 2.05rem;
+  letter-spacing: 10px;
+  text-align: center;
+  line-height: 70px;
+  span {
+    font-weight: 900;
+    font-size: 6rem;
+    display: block;
+    letter-spacing: 5px;
+  }
+}
+
+button {
+  font-size: 1.5rem;
+}
+
+h2, h3 {
+  font-size: 1.75rem;
+  font-weight: 300;
+  letter-spacing: 5px;
+  line-height: 60px;
+  margin-bottom: 50px;
+  span {
+    display: block;
+    font-size: 5.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+  }
+}
+
+.howToPlay {
+  line-height: 30px;
+  p {
+    font-size: 1.25rem;
+  }
+}
