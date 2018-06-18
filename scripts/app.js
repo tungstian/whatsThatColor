@@ -16,6 +16,8 @@
 
 const app = {};
 
+
+
   // create a function to show instructions
   app.handleInstructions = () => {
     const instructions = document.getElementById('instructions');
@@ -26,11 +28,17 @@ const app = {};
     });
   }
 
+  // function to close the instructions modal
   app.handleModalClose = () => {
     const closeButton = document.getElementById('back');
     closeButton.addEventListener('click', function() {
       instructions.classList.add('hidden');
     });
+  }
+
+  app.instructionListeners = () => {
+    app.handleInstructions();
+    app.handleModalClose();
   }
 
   // create an array of colours from the colour array
@@ -124,8 +132,6 @@ const app = {};
   }
 
   app.newQuestion = () => {
-    // app.createAnswerKey();
-    // app.handleUserScore();
     app.handleColorDisplay();
     app.displayQuestion();
   }
@@ -151,7 +157,6 @@ const app = {};
       app.userAnswer = false;
       // add the answer to the userAnswers array
       app.userAnswers.push(false);
-      // app.compareAnswers();
       app.newQuestion();
     });
     app.compareAnswers();
@@ -162,7 +167,6 @@ const app = {};
     if (app.comparison === app.userAnswer) {
       // console.log('point');
       app.userCorrect++;
-      console.log(app.userCorrect);
     } else if (app.comparison !== app.userAnswer) {
       app.userCorrect;
     }
@@ -173,29 +177,30 @@ const app = {};
     setTimeout(function() {
       app.main.innerHTML = ('');
       document.body.style.backgroundColor = 'white';
-      app.main.innerHTML = (`
-        <h1>Your score is <span>${app.userCorrect}/${app.answerKey.length}</span></h1>
+      app.main.innerHTML =
+        (`
+          <h1>Your score is <span>${app.userCorrect}/${app.answerKey.length}</span></h1>
 
-        <div class="buttonWrapper">
-          <button id ="restart">Try again!</button>
-        </div>
+          <div class="buttonWrapper">
+            <button id ="restart">Try again!</button>
+          </div>
         `)
         const restart = document.getElementById('restart');
         restart.addEventListener('click', function() {
-          app.main.innerHTML = (`
-            <h1>What's that<span>css colour?</span></h1>
-            <div class="buttonWrapper">
-              <button id ="howToPlay">How to play</button>
-              <button id ="start">Start!</button>
-            </div>
+          app.main.innerHTML =
+            (`
+              <h1>What's that<span>css colour?</span></h1>
+              <div class="buttonWrapper">
+                <button id ="howToPlay">How to play</button>
+                <button id ="start">Start!</button>
+              </div>
             `);
           app.handleGameStart();
-          app.handleInstructions();
+          app.instructionListeners();
           app.answerKey = [];
           app.userAnswers = [];
         });
       }, 10000);
-
     }
 
 
@@ -205,15 +210,13 @@ const app = {};
 
       app.handleColorDisplay();
       app.displayQuestion();
-      // app.handleUserAnswer();
       app.gameTimer();
+
+      // we have to reset app.answerKey to an empty array and app.userCorrect to 0 because the user's click logs as "true"
+      app.answerKey = [];
       app.userCorrect = 0;
     });
   }
-
-  // fade in
-
-
 
   app.init = () => {
     // global variables
@@ -286,10 +289,9 @@ const app = {};
       }
     ];
 
-    app.handleInstructions();
-    app.handleModalClose();
+    app.instructionListeners();
     app.handleGameStart();
-    // put event listeners here
+
   }
 
 document.addEventListener('DOMContentLoaded', function() {
