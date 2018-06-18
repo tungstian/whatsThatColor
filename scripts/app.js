@@ -90,12 +90,14 @@ const app = {};
       </div>
       `);
 
-    app.handleUserAnswer();
+    // app.handleUserAnswer();
   }
 
   app.displayQuestion = () => {
     app.randomizeColorNames();
     app.handleQuestion();
+    app.createAnswerKey();
+    app.handleUserAnswer();
   }
 
   // link the color property and the name property
@@ -122,11 +124,13 @@ const app = {};
   }
 
   app.newQuestion = () => {
-    app.createAnswerKey();
-    app.handleUserScore();
+    // app.createAnswerKey();
+    // app.handleUserScore();
     app.handleColorDisplay();
     app.displayQuestion();
   }
+
+
 
   // we need to get the user's answer
   app.handleUserAnswer = () => {
@@ -138,7 +142,7 @@ const app = {};
       app.userAnswer = true;
       // add the answer to the userAnswers array
       app.userAnswers.push(true);
-      app.compareAnswers();
+      // app.compareAnswers();
       app.newQuestion();
     });
 
@@ -147,62 +151,30 @@ const app = {};
       app.userAnswer = false;
       // add the answer to the userAnswers array
       app.userAnswers.push(false);
-      app.compareAnswers();
+      // app.compareAnswers();
       app.newQuestion();
     });
+    app.compareAnswers();
   }
-
-  // add 1 to the score
-  app.keepScore = () => {
-    score++;
-  }
-
-  // at the end of the game, we need to keep compare app.answerKey to  app.userAnswers and create an array with matching items.
-  // we can then use .length to identify how many questions the user got right out of the amount of questions (app.answerKey)
-  // app.compareAnswers = () => {
-  //   console.log(app.answerKey);
-  //   // we can use a for loop to compare indexes and their values
-  //   for (let i = 0; i > app.answerKey.length; i++) {
-  //       if (app.answerKey[i] === app.userAnswers[i]) {
-  //         app.userCorrect++
-  //         // console.log(app.userCorrect);
-  //     }
-  //     console.log(app.answerKey[i]);
-  //   }
-  // }
 
   app.compareAnswers = () => {
-    console.log('compareAnswers: app.answerKey.length = ' + app.answerKey.length)
-    // we can use a for loop to compare indexes and their values
-    /*
-    ----------------------------------------------------------------------------------------------
-    - we are only adding to the answerKey array with the "newQuestion" function and that function doesn't run until after we've answered the first question
-    - only the "displayQuestion" function runs when setting up the first question and that function does not add an answer to the answerKey array so there is nothing in the array when we first use the compareAnswers function
-    ------------------------------------------------------------------------------------------------
-    */
-    for (let i = 0; i < app.answerKey.length; i++) {
-        console.log('in loop')
-        if (app.answerKey[i] === app.userAnswers[i]) {
-          console.log('point');
-          app.userCorrect++
-          // console.log(app.userCorrect);
-      } else {
-          console.log('no point');
-      }
+    // console.log('compareAnswers: app.answerKey.length = ' + app.answerKey.length)
+    if (app.comparison === app.userAnswer) {
+      // console.log('point');
+      app.userCorrect++;
+      console.log(app.userCorrect);
+    } else if (app.comparison !== app.userAnswer) {
+      app.userCorrect;
     }
   }
 
-  // we need to keep track of the score
-  app.handleUserScore = () => {
-    // compare both arrays, create a new array with matches
-  }
 
   app.gameTimer = () => {
     setTimeout(function() {
       app.main.innerHTML = ('');
       document.body.style.backgroundColor = 'white';
       app.main.innerHTML = (`
-        <h1>Your score is <span>${app.score}/${app.answerKey.length}</span></h1>
+        <h1>Your score is <span>${app.userCorrect}/${app.answerKey.length}</span></h1>
 
         <div class="buttonWrapper">
           <button id ="restart">Try again!</button>
@@ -230,28 +202,29 @@ const app = {};
   app.handleGameStart = () => {
     const startButton = document.getElementById('start');
     startButton.addEventListener('click', function() {
-      // const gameBoard = document.getElementById('gameBoard');
-      // gameBoard.classList.remove('hidden');
 
       app.handleColorDisplay();
       app.displayQuestion();
+      // app.handleUserAnswer();
       app.gameTimer();
+      app.userCorrect = 0;
     });
   }
+
+  // fade in
+
 
 
   app.init = () => {
     // global variables
     app.colorValues = [];
     app.colorNames = [];
-    app.score = 0;
-    // app.gameBoardWrapper = document.getElementById('gameBoardWrapper');
     app.main = document.querySelector('main');
     app.answerKey = [];
     app.userAnswers = [];
     app.comparison;
     app.userAnswer;
-    app.userCorrect = 0;
+    app.userCorrect;
 
 
     app.colors = [
