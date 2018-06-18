@@ -1,5 +1,5 @@
 main {
-  width: 80vw;
+  min-width: 80vw;
   // border: 1px solid red;
   margin: 0px auto;
   margin-top: 30vh;
@@ -11,5 +11,11 @@ main {
     flex-wrap: wrap;
     justify-content: space-around;
     // border: 1px solid red;
+  }
+}
+
+@media (max-width: 855px) {
+  main {
+    margin-top: 25vh;
   }
 }

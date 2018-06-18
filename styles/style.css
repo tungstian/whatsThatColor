@@ -163,8 +163,27 @@ h2, h3 {
   .howToPlay p {
     font-size: 1.25rem; }
 
+.darkBG h1 {
+  color: white; }
+
+@media (max-width: 855px) {
+  h1, h2, h3 {
+    font-size: 1.75rem;
+    line-height: 60px; }
+    h1 span, h2 span, h3 span {
+      line-height: 80px;
+      font-size: 5.5rem; } }
+
+@media (max-width: 416px) {
+  h1, h2, h3 {
+    font-size: 1.5rem;
+    line-height: 60px; }
+    h1 span, h2 span, h3 span {
+      line-height: 60px;
+      font-size: 4rem; } }
+
 main {
-  width: 80vw;
+  min-width: 80vw;
   margin: 0px auto;
   margin-top: 30vh; }
   main .buttonWrapper {
@@ -179,13 +198,23 @@ main {
     -ms-flex-pack: distribute;
     justify-content: space-around; }
 
+@media (max-width: 855px) {
+  main {
+    margin-top: 25vh; } }
+
 .instructionsWrapper {
-  width: 800px;
+  max-width: 800px;
   margin: 0 auto;
   margin-top: 150px; }
   .instructionsWrapper button {
     width: 150px;
     margin-top: 20px; }
+
+@media (max-width: 416px) {
+  .instructionsWrapper {
+    max-width: 80vh;
+    margin-left: 10px;
+    margin-right: 10px; } }
 
 .modal {
   position: absolute;
@@ -205,16 +234,65 @@ main {
 
 button {
   height: 50px;
-  border: 1px solid black;
+  border: 1.5px solid black;
   width: 200px;
   background-color: rgba(255, 255, 255, 0); }
   button:active {
-    border: 2px solid black;
     background: black;
     color: white;
     -webkit-transition: all .5s;
     -o-transition: all .5s;
     transition: all .5s; }
   button:focus, button:hover {
+    outline: none; }
+  button:active, button:focus, button:hover {
+    border: 2.5px solid black; }
+
+.darkBG button {
+  color: white;
+  border: 1.5px solid white; }
+  .darkBG button:active {
+    border: 1.5px solid white;
+    background: white;
+    color: black;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s; }
+  .darkBG button:focus, .darkBG button:hover {
     outline: none;
-    border: 2px solid black; }
+    border: 2.5px solid white; }
+
+.fade-in {
+  opacity: 1;
+  -webkit-animation-name: fadeInOpacity;
+  animation-name: fadeInOpacity;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-in;
+  animation-timing-function: ease-in;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s; }
+
+@-webkit-keyframes fadeInOpacity {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@media (max-width: 1228px) {
+  .buttonWrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
+    .buttonWrapper button:last-child {
+      margin-top: 20px; } }

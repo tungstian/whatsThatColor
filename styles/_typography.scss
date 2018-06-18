@@ -35,3 +35,31 @@ h2, h3 {
     font-size: 1.25rem;
   }
 }
+
+.darkBG {
+  h1 {
+    color: white;
+  }
+}
+
+@media (max-width: 855px) {
+  h1, h2, h3 {
+    font-size: 1.75rem;
+    line-height: 60px;
+    span {
+      line-height: 80px;
+      font-size: 5.5rem;
+    }
+  }
+}
+
+@media (max-width: 416px) {
+  h1, h2, h3 {
+    font-size: 1.5rem;
+    line-height: 60px;
+    span {
+      line-height: 60px;
+      font-size: 4rem;
+    }
+  }
+}
