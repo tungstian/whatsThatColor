@@ -221,7 +221,7 @@ app.gameTimer = () => {
       buttonWrapper.setAttribute('class', 'buttonWrapper');
 
       const button = document.createElement('button');
-      const buttonText = document.createTextNode('Try again!');
+      const buttonText = document.createTextNode('Try again');
       button.setAttribute('id', 'restart');
       button.appendChild(buttonText);
 
@@ -230,7 +230,7 @@ app.gameTimer = () => {
       buttonWrapper.classList.add('fade-in');
       app.main.appendChild(buttonWrapper);
       app.gameRestart();
-    }, 1000);
+    }, 1500);
   }, 10000);
 }
 
@@ -270,8 +270,8 @@ app.handleGameStart = () => {
   });
 }
 
-// change the favicon
-// create array of icons
+// Change the favicon
+// Create array of icons
 app.favicon = () => {
   let current = 0;
   let icons = [
