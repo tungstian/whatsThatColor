@@ -205,7 +205,7 @@ main {
 .instructionsWrapper {
   max-width: 600px;
   margin: 0 auto;
-  margin-top: 150px; }
+  margin-top: 20vh; }
   .instructionsWrapper button {
     width: 150px;
     margin-top: 20px; }
