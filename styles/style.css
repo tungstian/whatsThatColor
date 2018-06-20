@@ -198,6 +198,40 @@ main {
     -ms-flex-pack: distribute;
     justify-content: space-around; }
 
+.container {
+  height: 8px; }
+
+.progressWrapper {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 8px;
+  margin: 0; }
+
+.progressBar {
+  width: 1%;
+  height: 8px;
+  background-color: rgba(0, 0, 0, 0.8); }
+
+.darkBG button {
+  color: white;
+  border: 1.5px solid white; }
+  .darkBG button:active {
+    border: 1.5px solid white;
+    background: white;
+    color: black;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s; }
+  .darkBG button:focus, .darkBG button:hover {
+    outline: none;
+    border: 2.5px solid white; }
+
+.progressBarDarkBG {
+  background-color: rgba(255, 255, 255, 0.8); }
+
+.progressBarWrapperDarkBG {
+  background-color: rgba(255, 255, 255, 0.5); }
+
 @media (max-width: 855px) {
   main {
     margin-top: 25vh; } }
@@ -247,20 +281,6 @@ button {
     outline: none; }
   button:active, button:focus, button:hover {
     border: 2.5px solid black; }
-
-.darkBG button {
-  color: white;
-  border: 1.5px solid white; }
-  .darkBG button:active {
-    border: 1.5px solid white;
-    background: white;
-    color: black;
-    -webkit-transition: all .5s;
-    -o-transition: all .5s;
-    transition: all .5s; }
-  .darkBG button:focus, .darkBG button:hover {
-    outline: none;
-    border: 2.5px solid white; }
 
 .fade-in {
   opacity: 1;

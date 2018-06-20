@@ -93,6 +93,54 @@ app.compareColorToName = () => {
   }
 }
 
+// set multiple attributes via a helper function
+app.setAttributes = (el, attrs) => {
+  for(let key in attrs) {
+    el.setAttribute(key, attrs[key]);
+  }
+}
+
+// create a progress bar
+app.createProgressBar = () => {
+  app.setAttributes(
+    app.progressBarWrapper,
+    {
+      'id': 'progress',
+      'class': 'progress'
+    }
+  );
+  app.setAttributes(
+    app.progressBar,
+    {
+      'id': 'progressBar',
+      'class': 'progressBar'
+    }
+  );
+  app.progressBarWrapper.appendChild(app.progressBar);
+
+  app.container.appendChild(app.progressBarWrapper);
+}
+
+
+
+
+// track how much time is left
+app.showTimeLeft = function move() {
+  app.createProgressBar();
+  const elem = document.getElementById('progressBar');
+  let width = 1;
+  let id = setInterval(frame, 100);
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+    } else {
+      width++;
+      elem.style.width = width + '%';
+    }
+  }
+}
+
+
 // setting up the question
 app.createQuestion = () => {
   app.main.innerHTML = ('');
@@ -108,6 +156,7 @@ app.createQuestion = () => {
   app.handleLegibility();
 }
 
+
 // change the color of the main elements for legibility
 app.handleLegibility = () => {
   if (app.randomColor === '#008B8B' ||
@@ -116,10 +165,14 @@ app.handleLegibility = () => {
       app.randomColor === '#191970' )
       {
         app.main.classList.add('darkBG');
+        app.progressBar.classList.add('progressBarDarkBG');
+        app.progressBarWrapper.classList.add('.progressBarWrapperDarkBG');
         // document.getElementById('h1').style.color = 'white';
         // console.log('color is dark');
       } else {
         app.main.classList.remove('darkBG');
+        app.progressBar.classList.remove('progressBarDarkBG');
+        app.progressBarWrapper.classList.remove('.progressBarWrapperDarkBG');
       }
 }
 
@@ -208,13 +261,24 @@ app.newQuestion = () => {
 app.gameTimer = () => {
   setTimeout(function() {
     app.main.classList.remove('darkBG');
-    const score = (`${app.userCorrect}/${app.answerKey.length}`);
+    // minus 1 from app.answerKey.length because a question flashes at the end before the user gets a chance to answer it
+    const questionsAnswered = app.answerKey.length-1;
+    const score = (`${app.userCorrect}/${questionsAnswered}`);
     app.main.innerHTML = ('');
     document.body.style.backgroundColor = 'white';
-    app.main.innerHTML =
+
+    if (app.userCorrect > 0 && questionsAnswered > 0 && app.userCorrect === questionsAnswered ) {
+      app.main.innerHTML =
       (`
-        <h1>Your score is <span>${score}</span></h1>
+        <h1>Way to go! Your score is <span>${score}</span></h1>
       `);
+    } else {
+      app.main.innerHTML =
+        (`
+          <h1>Nice try! Your score is <span>${score}</span></h1>
+        `);
+    }
+
     //fade the restart button so that the user doesn't accidentally click it before seeing their score
     setTimeout(function() {
       const buttonWrapper = document.createElement('div');
@@ -231,6 +295,7 @@ app.gameTimer = () => {
       app.main.appendChild(buttonWrapper);
       app.gameRestart();
     }, 1500);
+    app.container.innerHTML = ('');
   }, 10000);
 }
 
@@ -264,6 +329,7 @@ app.handleGameStart = () => {
     app.displayQuestion();
     // run the timer
     app.gameTimer();
+    app.showTimeLeft();
 
     // we have to reset app.userCorrect to 0 because the user's clicks log as "true" and affect the values of the count.
     app.userCorrect = 0;
@@ -307,11 +373,15 @@ app.init = () => {
   app.buttonWrapper = document.getElementsByClassName('buttonWrapper');
   app.button = document.querySelector('button');
   app.main = document.querySelector('main');
+  app.container = document.getElementById('container');
+  app.progressBarWrapper = document.createElement('div');
+  app.progressBar = document.createElement('div');
   app.answerKey = [];
   app.userAnswers = [];
   app.comparison;
   app.userAnswer;
   app.userCorrect;
+
 
 
   app.colors = [
