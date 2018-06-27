@@ -55,6 +55,43 @@ app.instructions = () => {
   app.closeModal(renderedModal);
 }
 
+app.getColors = () => {
+  fetch('https://fun-fun-colors.herokuapp.com/allcolors')
+  .then(function(res) {
+    return res.json();
+  })
+  .then(function(data) {
+    // console.log(data);
+    //get a random color from the api
+    let randomColor = data.color[Math.floor(Math.random() * data.color.length)];
+    // console.log(randomColor);
+
+    // change the background to the RGB value of the CSS string from the API
+    app.bg.style.backgroundColor = app.convertToRGB(randomColor);
+  })
+  .catch(function(err) {
+    // at some point, change this to manipulate the DOM--maybe a modal?
+    alert(`whoops, there's an error! ${err}`);
+  })
+}
+
+
+
+
+// convert CSS strings from the api into rgb so that the color name doesn't show in dev tools 😏
+// https://stackoverflow.com/questions/1573053/javascript-function-to-convert-color-names-to-hex-codes
+app.convertToRGB= (cssString) => {
+  const pseudo = document.createElement('div');
+  pseudo.style.color = cssString;
+  let colors = window.getComputedStyle(
+    document.body.appendChild(pseudo)
+  ).color.match(/\d+/g).map(function(pseudo){
+    return parseInt(pseudo,10);
+  });
+  document.body.removeChild(pseudo);
+  return (colors.length >= 3) ? '#' + (((1 << 24) + (colors[0] << 16) + (colors[1] << 8) + colors[2]).toString(16).substr(1)) : false;
+}
+
 
 app.init = () => {
   // create a variable to store the HTML #app element
@@ -65,6 +102,8 @@ app.init = () => {
   // add a class to the wrapper so that we can access with CSS
   app.wrapper.classList.add('wrapper');
 
+  app.bg = document.body;
+
   // set multiple attributes via a helper function
   app.setAttributes = (el, attrs) => {
     for(let key in attrs) {
@@ -74,7 +113,7 @@ app.init = () => {
 
   // event listeners
   app.showModal = (le) => {
-    console.log(le);
+    // console.log(le);
     document.getElementById('howToPlay').addEventListener('click',function() {
       document.getElementById('instructions').classList.remove('hidden');
     });
@@ -88,10 +127,11 @@ app.init = () => {
 
   app.onLoad();
   app.instructions();
+  app.getColors();
 
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('...are you peeking at the answers? 👀');
+  console.log('...are you trying to take a peek at the answers? 👀');
   app.init();
 });
