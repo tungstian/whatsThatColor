@@ -92,7 +92,6 @@ button[disabled], input[disabled] {
   cursor: default; }
 
 input[type=checkbox], input[type=radio] {
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0; }
 
@@ -190,12 +189,8 @@ main {
     width: 35vw;
     margin: 0px auto;
     margin-top: 50px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    -ms-flex-pack: distribute;
     justify-content: space-around; }
 
 .container {
@@ -219,8 +214,6 @@ main {
     border: 1.5px solid white;
     background: white;
     color: black;
-    -webkit-transition: all .5s;
-    -o-transition: all .5s;
     transition: all .5s; }
   .darkBG button:focus, .darkBG button:hover {
     outline: none;
@@ -274,8 +267,6 @@ button {
   button:active {
     background: black;
     color: white;
-    -webkit-transition: all .5s;
-    -o-transition: all .5s;
     transition: all .5s; }
   button:focus, button:hover {
     outline: none; }
@@ -284,20 +275,10 @@ button {
 
 .fade-in {
   opacity: 1;
-  -webkit-animation-name: fadeInOpacity;
   animation-name: fadeInOpacity;
-  -webkit-animation-iteration-count: 1;
   animation-iteration-count: 1;
-  -webkit-animation-timing-function: ease-in;
   animation-timing-function: ease-in;
-  -webkit-animation-duration: .5s;
   animation-duration: .5s; }
-
-@-webkit-keyframes fadeInOpacity {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
 
 @keyframes fadeInOpacity {
   0% {
@@ -307,12 +288,7 @@ button {
 
 @media (max-width: 1228px) {
   .buttonWrapper {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center; }
     .buttonWrapper button:last-child {
       margin-top: 20px; } }

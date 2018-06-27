@@ -47,14 +47,14 @@ app.createArrayOfNames = () => {
 }
 
 // create an array of color hex codes from the color array
-app.createArrayOfHexCodes = (hex) => {
+app.createArrayOfHexCodes = () => {
   app.colors.forEach(function(c) {
     // get the value of the 'color' property
     const colorVal = c.color;
     app.colorValues.push(colorVal);
   });
   // this is the array of colors
-  return(app.colorValues);
+  return app.colorValues;
 }
 
 // choose a color to display in the game
@@ -84,14 +84,21 @@ app.randomizeColorNames = () => {
 // link the color property and the name property
 app.compareColorToName = () => {
   for (let i = 0; i < app.colors.length; i++) {
-    if (app.randomColor === app.colors[i].color && app.randomName === app.colors[i].name) {
-      // console.log('the question is right');
-       app.comparison = true;
-    } else if (app.randomColor !== app.colors[i].color && app.randomName !== app.colors[i].name) {
-       app.comparison = false;
+    if (app.randomColor === app.colorValues[i] && app.randomName === app.colorNames[i]) {
+      console.log('the question is right');
+      console.log(app.randomColor);
+      console.log(app.colors[i].color);
+      console.log(app.randomName);
+      console.log(app.colors[i].name);
+      app.comparison = true;
+    // } else {
+      // app.randomColor !== app.colors[i].color && app.randomName !== app.colors[i].name;
+      // app.comparison = false;
     }
   }
 }
+
+// compare the index of the answer key array to the index of the user answers array
 
 // set multiple attributes via a helper function
 app.setAttributes = (el, attrs) => {
@@ -192,7 +199,7 @@ app.createAnswerKey = () => {
   // app.compareColorToName();
   if (app.comparison === true) {
     app.answerKey.push(true);
-  } else if (app.comparison !== true) {
+  } else {
     app.answerKey.push(false);
   }
 }
@@ -212,6 +219,7 @@ app.handleUserAnswer = () => {
   });
 
   const userNo = no.addEventListener('click', function() {
+    console.log('no');
     // set the app.userAnswer variable to "false"
     app.userAnswer = false;
     // add the answer to the userAnswers array
@@ -315,6 +323,8 @@ app.gameRestart = () => {
   // reset the arrays for the answer key and the user's answers
   app.answerKey = [];
   app.userAnswers = [];
+  app.colorNames = [];
+  app.colorValues = [];
   });
 }
 
