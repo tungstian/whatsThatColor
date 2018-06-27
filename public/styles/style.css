@@ -181,11 +181,11 @@ h2, h3 {
       line-height: 60px;
       font-size: 4rem; } }
 
-main {
+.wrapper {
   min-width: 80vw;
   margin: 0px auto;
   margin-top: 30vh; }
-  main .buttonWrapper {
+  .wrapper .buttonWrapper {
     width: 35vw;
     margin: 0px auto;
     margin-top: 50px;
@@ -229,6 +229,9 @@ main {
   main {
     margin-top: 25vh; } }
 
+#instructions {
+  background: whitesmoke; }
+
 .instructionsWrapper {
   max-width: 600px;
   margin: 0 auto;
@@ -242,6 +245,9 @@ main {
     max-width: 80vh;
     margin-left: 10px;
     margin-right: 10px; } }
+
+body {
+  background: whitesmoke; }
 
 .modal {
   position: absolute;
